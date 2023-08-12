@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>Links</title>
+    <style>
+        :root {
+            --link-color: rgb(60, 189, 176);
+        }
+
+        * {
+            font-family: sans-serif;
+        }
+
+        body {
+            background: linear-gradient(#d0d0d0, #eaeaea);
+        }
+
+        .grid-container {
+            margin: 0 auto;
+            max-width: 768px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: auto;
+            gap: 12px;
+        }
+
+        .grid-item {
+            font-weight: 700;
+            font-size: 1.5em;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #000;
+            text-decoration: none;
+
+            --foreground: color-mix(in srgb, var(--link-color) 50%, black);
+            --background: color-mix(in srgb, var(--link-color) 100%, white);
+
+            background: var(--background);
+            border-radius: 12px;
+
+            transition: all 100ms ease-in-out;
+
+            color: var(--foreground);
+            outline: var(--foreground) solid 2px;
+        }
+
+        .grid-item:hover {
+            --foreground: color-mix(in srgb, var(--link-color) 60%, black);
+            --background: color-mix(in srgb, var(--link-color) 70%, white);
+            outline: var(--foreground) solid 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        {% for item in data %}
+        <a class="grid-item" style="--link-color: {{ item.color }}" href="{{ item.url }}">{{ item.name }}</a>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
